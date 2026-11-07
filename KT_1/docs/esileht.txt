@@ -1,0 +1,14 @@
+Ulesanne 5 - vormi saatmise tulemus
+
+Meetod GET, pärast vormi täitmist:
+
+index.html?alates=2026-09-10&vabu=4&sort=kuupaev&ainultVabad=1&epost=test@gmail.com
+
+Tahelepanekud:
+1. Votmed tulevad name-atribuudist, mitte id-st.
+2. Märkeruut ilmub aadressile ainult siis, kui see on märgistatud (valitud).
+3. Tuhi tekstivali või täitmata valikud käituvad vastavalt standardile; täidetud väljade väärtused edastatakse otse URL-i päringustringis.
+
+Meetod POST, sama vorm:
+Aadressiriba: index.html (parameetreid aadressireas ei ole näha)
+Network-paneeli Payload tab: alates: 2026-09-10, vabu: 4, sort: kuupaev, ainultVabad: 1, epost: test@gmail.com
