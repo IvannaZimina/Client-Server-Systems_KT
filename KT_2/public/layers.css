@@ -6,6 +6,8 @@
 /* Olemasolev stiilifail laaditakse framework-kihti. */
 @import url("../materials/public/style-2.css") layer(framework);
 
+@import url("./template.css") layer(framework);
+
 /* 1. Disainižetoonid ja lähtestus */
 @layer base {
     :root {

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS jõudluse mõõtmine</title>
+    <link rel="stylesheet" href="template.css">
+    <style>
+        body {
+            padding: 1.5rem;
+        }
+
+        .measurement-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-block: 1rem;
+        }
+
+        #nest {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            min-width: 0;
+            padding: 1rem;
+            border: 1px solid #cbd2d9;
+            border-radius: 0.5rem;
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+        #results {
+            margin-block: 1rem;
+            padding: 1rem;
+            background: #f1f4f6;
+            border-radius: 0.5rem;
+            overflow-wrap: anywhere;
+        }
+
+        #nest.optimized .card {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 120px;
+        }
+    </style>
+    <script type="module" src="performance.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <h1>CSS jõudluse mõõtmine</h1>
+
+        <p>
+            Lehel luuakse 5000 kaarti. Mõõdetakse paigutuse aega
+            ja nelja CSS-selektori päringute aega.
+        </p>
+
+        <div class="measurement-controls">
+            <button class="btn btn-primary" id="measure-normal">
+                Mõõda ilma optimeerimiseta
+            </button>
+
+            <button class="btn btn-primary" id="measure-optimized">
+                Mõõda content-visibility abil
+            </button>
+
+            <button class="btn btn-secondary" id="measure-selectors">
+                Mõõda selektoreid
+            </button>
+        </div>
+
+        <section>
+            <h2>Tulemused</h2>
+            <div id="results" aria-live="polite">
+                Mõõtmisi pole veel tehtud.
+            </div>
+        </section>
+
+        <section>
+            <h2>Kaardid</h2>
+            <div id="nest"></div>
+        </section>
+    </main>
+</body>
+
+</html>

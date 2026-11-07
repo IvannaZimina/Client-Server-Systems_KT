@@ -1,0 +1,60 @@
+/* C02 — Ülesanne 5: Bootstrap ja CSS-i jõudlus */
+
+/* 1. Oma muutujad enne Bootstrapi importi */
+$primary: #0b3d52;
+$secondary: #647783;
+$success: #26734d;
+$danger: #b42318;
+$light: #f1f4f6;
+$dark: #202a32;
+
+$body-bg: #ffffff;
+$body-color: #202a32;
+$border-radius: 0.5rem;
+$border-radius-sm: 0.25rem;
+$border-radius-lg: 0.75rem;
+
+$font-family-sans-serif: system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+
+/* 2. Bootstrapi vajalikud moodulid */
+
+/* Funktsioonid ja muutujad */
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+/* Põhistiilid */
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+
+/* Paigutus */
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+
+/* Kasutatavad komponendid */
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/card";
+
+/* Valikulised utiliidid */
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+
+/* Projekti enda lisastiilid */
+.event-card {
+    height: 100%;
+}
+
+.event-card .card-title {
+    color: $primary;
+}
+
+.event-card .card-text {
+    max-width: 65ch;
+}
