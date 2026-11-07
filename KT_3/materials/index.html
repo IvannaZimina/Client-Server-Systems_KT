@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C03 katsetusala — piletikassa sündmused</title>
+<style>
+  /* Leht on hele — see rida hoiab ära, et brauser ta ise tumedaks pöörab. */
+  :root { color-scheme: light; }
+  body { font: 15px/1.55 system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.05rem; margin-top: 2rem; }
+  form { display: flex; flex-wrap: wrap; gap: .6rem; align-items: end; margin: 1rem 0; }
+  label { display: flex; flex-direction: column; gap: .2rem; font-size: .9rem; }
+  input, select, button { font: inherit; padding: .35rem .5rem; }
+  button { cursor: pointer; }
+  code { background: #f4f4f6; padding: 0 .25rem; }
+  #count { color: #555; margin: .5rem 0; }
+  ul#events { list-style: none; padding: 0; display: grid; gap: .6rem;
+                 grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+  .row { border: 1px solid #ccc; border-left: 3px solid #156082; padding: .6rem .8rem; }
+  .row h3 { font-size: 1rem; margin: 0 0 .3rem; }
+  .row p { margin: 0 0 .5rem; color: #555; }
+  .row.full { border-left-color: #999; opacity: .7; }
+</style>
+</head>
+<body>
+<h1>C03 katsetusala — piletikassa sündmused</h1>
+
+<p>Ette antud. <strong>See leht on MÄRGEND, mitte loogika</strong> — id-d ja
+<code>name</code>-atribuudid on siin selleks, et sinu kood leiaks need üles.
+Märgendit ennast hindas juba C02; siin on sinu töö JavaScript.</p>
+
+<p>Millele sinu kood siin toetub:</p>
+<ul>
+  <li><code>#events</code> — siia joonistab <code>draw.js</code> read
+      (<code>&lt;li class="row" data-id="…"&gt;</code>)</li>
+  <li><code>#count</code> — siia kirjutab <code>draw.js</code> kolme oleku teate</li>
+  <li><code>#search</code> — vorm, mille <code>submit</code>-i sa kuulad (Ex4)</li>
+  <li><code>#search-text</code> — otsinguväli, mille <code>input</code>-i sa
+      viivitusega kuulad (Ex4)</li>
+  <li><code>#clear</code> — nupp, mille kuulaja on ette antud
+      <code>capture-tool.js</code>-is</li>
+</ul>
+
+<h2>Otsing ja järjestus</h2>
+<form id="search">
+  <label for="search-text">Otsi nime või toimumiskoha järgi
+    <input type="search" id="search-text" name="search" placeholder="nt sügis">
+  </label>
+  <label for="sort">Järjesta
+    <select id="sort" name="sort">
+      <option value="start">alguse järgi</option>
+      <option value="name">nime järgi</option>
+      <option value="free">vabade kohtade järgi</option>
+    </select>
+  </label>
+  <label for="dir">Suund
+    <select id="dir" name="dir">
+      <option value="asc">kasvavalt</option>
+      <option value="desc">kahanevalt</option>
+    </select>
+  </label>
+  <button type="submit">Otsi</button>
+  <button type="button" id="clear">Tühjenda</button>
+</form>
+
+<h2>Sündmused</h2>
+<p id="count">Laadin sündmusi…</p>
+<ul id="events"></ul>
+
+<!-- ★ SINU SISENEMISPUNKT.
+     Ex3 kirjutab public/view.js — see rida laeb tema.
+     Ex4 lisab public/events.js, mis impordib ise view.js ja capture-tool.js,
+     seega Ex4-s tohib alumise rea vahetada:
+         <script type="module" src="./events.js"></script>
+     Ex5 teeb sama draft.js-iga. Ex1 ja Ex2 on puhtad funktsioonid ja
+     seda lehte ei vaja. -->
+<script type="module" src="./view.js"></script>
+<script type="module" src="./events.js"></script>
+</body>
+</html>
