@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Sügiskontsert", "venue": "Vanemuine",  "start": "2026-10-04T19:00", "seats": 420, "sold": 118, "price": 24.0 },
+  { "id": 2, "name": "Talveball",     "venue": "Estonia",    "start": "2026-12-13T20:00", "seats": 900, "sold": 900, "price": 45.0 },
+  { "id": 3, "name": "Improteater",   "venue": "Von Krahl",  "start": "2026-10-19T21:00", "seats": 120, "sold":  37, "price": 15.0 },
+  { "id": 4, "name": "Lastehommik",   "venue": "Nukuteater", "start": "2026-11-01T11:00", "seats": 200, "sold":   0, "price":  8.0 }
+]
