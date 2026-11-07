@@ -1,0 +1,12 @@
+{
+  "name": "kt-5-asynchronous-javascript",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:promises": "node materials/check-promises.js",
+    "check:request": "node materials/check-request.js",
+    "check:abort": "node materials/check-abort.js",
+    "check:api": "node materials/check-api.js",
+    "check:sw": "node materials/check-sw.js"
+  }
+}
