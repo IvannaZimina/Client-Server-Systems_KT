@@ -1,0 +1,23 @@
+# Ülesanne 1 — Arenduskeskkond töökorda
+
+Arenduskeskkonna kontroll
+Nimi: Ivanna Zimina
+Kuupäev: 08.09.2026
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>node --version
+v24.20.0
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>npm --version
+12.0.2
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>git --version
+git version 2.55.0.windows.5
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>git config --global user.name
+Zimina Ivanna
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>git config --global user.email
+zimina.ivanna@gmail.com
+
+D:\Colledge\SVNC.00.304 Klient-server süsteemid\Kontrolltööd\sulgpalliklubi>git init
+Initialized empty Git repository in D:/Colledge/SVNC.00.304 Klient-server süsteemid/Kontrolltööd/sulgpalliklubi/.git/
