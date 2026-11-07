@@ -1,0 +1,145 @@
+body {
+    font-family: sans-serif;
+    margin: 2rem;
+    background-color: #f8f9fa;
+}
+
+.section {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+h2 {
+    color: #0d6efd;
+    margin-top: 0;
+    font-size: 1.25rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.result-item {
+    margin-bottom: 0.5rem;
+    font-family: monospace;
+}
+
+.label {
+    font-weight: bold;
+    color: #495057;
+}
+
+/* Styles for Task 3 dynamic list */
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-item {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    font-family: monospace;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: end;
+}
+
+.event-search label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.event-search input,
+.event-search select,
+.event-search button,
+.event-card button {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.event-search button,
+.event-card button {
+    cursor: pointer;
+}
+
+.delegated-event-list {
+    display: grid;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+}
+
+.event-card {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-left: 3px solid #0d6efd;
+    border-radius: 4px;
+}
+
+.event-card h3,
+.event-card p {
+    margin: 0 0 0.5rem;
+}
+
+#storage-read,
+#storage-version,
+#storage-json {
+    white-space: pre-wrap;
+}
+
+/* Ülesanne 6.6. Shadow DOM-i stiiliisolatsiooni kontroll */
+h3 {
+    color: red;
+}
+
+.component-demo ticket-card {
+    display: block;
+    margin-bottom: 0.75rem;
+    --line: #0d6efd;
+}
+
+.seatmap-host {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 0.75rem;
+    overflow: auto;
+}
+
+.seatmap__row {
+    display: flex;
+    gap: 0.15rem;
+}
+
+.seatmap__row .seat {
+    min-width: 1.5rem;
+    padding: 0.2rem;
+    border: 1px solid #ced4da;
+    background: #e8f5e9;
+}
+
+.seatmap__row .seat--sold {
+    background: #f1f1f1;
+}

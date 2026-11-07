@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <title>C03 Test - Tasks 1, 2, 3, 4, 5 & 6</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "seatmap": "../materials/seatmap.js"
+            }
+        }
+    </script>
+
+    <script defer src="./defer.js"></script>
+    <script async src="./async.js"></script>
+</head>
+
+<body>
+    <h1>Klient-server C03 — Test Results</h1>
+
+    <!-- Task 1 Section -->
+    <div class="section">
+        <h2>Ülesanne 1 — Keel, ulatus ja silumine</h2>
+        <div class="result-item">
+            <span class="label">freeText(0):</span>
+            <span id="res-freetext"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">price('vip'):</span>
+            <span id="res-price"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">withVat(100):</span>
+            <span id="res-vat"></span>
+        </div>
+    </div>
+
+    <!-- Task 2 Section -->
+    <div class="section">
+        <h2>Ülesanne 2 — Massiivid ja objektid</h2>
+        <div class="result-item">
+            <span class="label">allSoldOut([]):</span>
+            <span id="res-soldout"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">seatsText({seats: 0}):</span>
+            <span id="res-seatstext"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">organizerName:</span>
+            <span id="res-org"></span>
+        </div>
+    </div>
+
+    <!-- Task 3 Section: DOM, State & View -->
+    <div class="section">
+        <h2>Ülesanne 3 — DOM: Olek ja vaade</h2>
+
+        <div style="margin-bottom: 1rem;">
+            <input type="text" id="search-input" class="form-control"
+                placeholder="Otsi sündmust nime või koha järgi...">
+        </div>
+
+        <ul id="event-list" class="event-list"></ul>
+    </div>
+
+    <!-- Task 4 Section -->
+    <div class="section">
+        <h2>Ülesanne 4 — Sündmused ja delegeerimine</h2>
+
+        <form id="search" class="event-search">
+            <label for="search-text">
+                Otsi nime või toimumiskoha järgi
+                <input type="search" id="search-text" name="search" placeholder="nt jazz" minlength="2" maxlength="80">
+            </label>
+
+            <label for="sort">
+                Järjesta
+                <select id="sort" name="sort">
+                    <option value="start">alguse järgi</option>
+                    <option value="name">nime järgi</option>
+                    <option value="free">vabade kohtade järgi</option>
+                </select>
+            </label>
+
+            <label for="dir">
+                Suund
+                <select id="dir" name="dir">
+                    <option value="asc">kasvavalt</option>
+                    <option value="desc">kahanevalt</option>
+                </select>
+            </label>
+
+            <button type="submit">Otsi</button>
+            <button type="button" id="clear">Tühjenda</button>
+        </form>
+
+        <p id="count" aria-live="polite"></p>
+        <ul id="events" class="delegated-event-list"></ul>
+    </div>
+
+    <!-- Task 5 Section -->
+    <div class="section">
+        <h2>Ülesanne 5 — Brauseripoolne hoidla ja mustand</h2>
+
+        <div class="result-item">
+            <span class="label">localStorage key:</span>
+            <span id="storage-key"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">save(data):</span>
+            <span id="storage-save"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">read():</span>
+            <span id="storage-read"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">wrong version:</span>
+            <span id="storage-version"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">broken JSON:</span>
+            <span id="storage-json"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">QuotaExceededError:</span>
+            <span id="storage-quota"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">blocked storage read:</span>
+            <span id="storage-blocked"></span>
+        </div>
+        <div class="result-item">
+            <span class="label">remove():</span>
+            <span id="storage-remove"></span>
+        </div>
+    </div>
+
+    <!-- Task 6 Section -->
+    <div class="section component-demo">
+        <h2>Ülesanne 6 — Veebikomponent ja moodulid</h2>
+
+        <h3>Page heading color test</h3>
+
+        <ticket-card data-event-id="1">
+            <span slot="name">Jazz Night</span>
+            <span slot="time">06.11.2026 · Salme</span>
+        </ticket-card>
+
+        <ticket-card data-event-id="2" sold-out>
+            <span slot="name">Rock Concert</span>
+            <span slot="time">12.11.2026 · Tondiraba</span>
+        </ticket-card>
+
+        <div class="result-item">
+            <span class="label">Shadow h3 color:</span>
+            <span id="component-shadow-color"></span>
+        </div>
+
+        <div class="result-item">
+            <span class="label">Page h3 color:</span>
+            <span id="component-page-color"></span>
+        </div>
+
+        <div class="result-item">
+            <span class="label">Undefined module assignment:</span>
+            <span id="component-module-test"></span>
+        </div>
+
+        <div class="result-item">
+            <span class="label">Event test (bubbles: true, composed: false):</span>
+            <span id="component-event-test"></span>
+        </div>
+
+        <div class="result-item">
+            <span class="label">Seatmap:</span>
+            <span id="component-seatmap-result">not loaded</span>
+        </div>
+
+        <div id="seatmap-host" class="seatmap-host"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
