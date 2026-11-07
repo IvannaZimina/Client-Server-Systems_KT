@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piletikassa — Ostuvorm</title>
+    <link rel="stylesheet" href="layers.css">
+    <script type="module" src="../materials/public/validation-api.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Piletite ostmine</h1>
+        <p>Palun täida tellimuse vorm.</p>
+
+        <form id="purchase" novalidate>
+
+            <fieldset>
+                <legend>Ostja andmed</legend>
+
+                <p class="field">
+                    <label for="name">Nimi</label>
+                    <input id="name" name="name" type="text" required minlength="2" maxlength="80" autocomplete="name"
+                        aria-describedby="name-help name-error">
+                    <span class="help" id="name-help">Sisesta oma nimi.</span>
+                    <span class="error" id="name-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="email">E-posti aadress</label>
+                    <input id="email" name="email" type="email" required autocomplete="email"
+                        aria-describedby="email-help email-error">
+                    <span class="help" id="email-help">Näiteks nimi@example.com.</span>
+                    <span class="error" id="email-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="email2">Korda e-posti aadressi</label>
+                    <input id="email2" name="email2" type="email" required autocomplete="email"
+                        aria-describedby="email2-help email2-error">
+                    <span class="help" id="email2-help">Sisesta sama e-posti aadress uuesti.</span>
+                    <span class="error" id="email2-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="phone">Telefon</label>
+                    <input id="phone" name="phone" type="tel" pattern="\+?[0-9 ]{7,15}" autocomplete="tel"
+                        aria-describedby="phone-help phone-error">
+                    <span class="help" id="phone-help">Näiteks +372 5123 4567. Valikuline.</span>
+                    <span class="error" id="phone-error" role="alert"></span>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Tellimuse andmed</legend>
+
+                <p class="field">
+                    <label for="event">Sündmus</label>
+                    <select id="event" name="event" required aria-describedby="event-help event-error">
+                        <option value="">Vali sündmus</option>
+                        <option value="131">Arendajate hommik</option>
+                        <option value="132">Improteater Improvisaatorid</option>
+                    </select>
+                    <span class="help" id="event-help">Vali sündmus, millele soovid pileteid osta.</span>
+                    <span class="error" id="event-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="quantity">Piletite arv</label>
+                    <input id="quantity" name="quantity" type="number" required min="1" max="6" step="1" value="1"
+                        aria-describedby="quantity-help quantity-error">
+                    <span class="help" id="quantity-help">Valida saab 1–6 piletit.</span>
+                    <span class="error" id="quantity-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="promo">Sooduskood</label>
+                    <input id="promo" name="promo" type="text" pattern="SOODUS-[A-Z0-9]{4}"
+                        aria-describedby="promo-help promo-error">
+                    <span class="help" id="promo-help">Näiteks SOODUS-2026. Valikuline.</span>
+                    <span class="error" id="promo-error" role="alert"></span>
+                </p>
+
+                <p class="field">
+                    <label for="note">Märkus korraldajale</label>
+                    <textarea id="note" name="note" rows="3" maxlength="300"
+                        aria-describedby="note-help note-error"></textarea>
+                    <span class="help" id="note-help">Kuni 300 tähemärki. Valikuline.</span>
+                    <span class="error" id="note-error" role="alert"></span>
+                </p>
+            </fieldset>
+
+            <p id="form-status" role="status" aria-live="polite"></p>
+
+            <button type="submit">Kontrolli tellimust</button>
+            <button type="reset">Tühjenda vorm</button>
+
+        </form>
+    </main>
+</body>
+
+</html>

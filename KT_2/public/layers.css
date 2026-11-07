@@ -1,0 +1,147 @@
+/* C02 — Ülesanne 3: Kaskaad, kihid ja disainižetoonid */
+
+/* Kihtide järjekord kuulutatakse enne kõiki teisi reegleid. */
+@layer base, framework, components, ours, exception;
+
+/* Olemasolev stiilifail laaditakse framework-kihti. */
+@import url("../materials/public/style-2.css") layer(framework);
+
+/* 1. Disainižetoonid ja lähtestus */
+@layer base {
+    :root {
+        color-scheme: light;
+
+        /* Pinnad */
+        --surface: #ffffff;
+        --surface-muted: #f1f3f5;
+
+        /* Tekst */
+        --text: #20252b;
+        --text-muted: #606b75;
+
+        /* Jooned */
+        --line: #cbd2d9;
+
+        /* Rõhk */
+        --accent: #1769aa;
+        --accent-strong: #104b7a;
+        --danger: #b42318;
+
+        /* Samm */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.5rem;
+        --space-6: 2rem;
+
+        /* Raadius */
+        --radius-small: 0.25rem;
+        --radius-medium: 0.5rem;
+        --radius-large: 0.75rem;
+    }
+
+    /* Süsteemi tumeda teema eelistus kehtib siis,
+     kui kasutaja pole ise teemat valinud. */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            color-scheme: dark;
+
+            --surface: #1c2229;
+            --surface-muted: #29323c;
+            --text: #edf1f5;
+            --text-muted: #b0bac5;
+            --line: #52606d;
+            --accent: #75baff;
+            --accent-strong: #a0ceff;
+            --danger: #ff8a80;
+        }
+    }
+
+    /* Kasutaja valitud teema on süsteemi eelistusest olulisem. */
+    :root[data-theme="light"] {
+        color-scheme: light;
+
+        --surface: #ffffff;
+        --surface-muted: #f1f3f5;
+        --text: #20252b;
+        --text-muted: #606b75;
+        --line: #cbd2d9;
+        --accent: #1769aa;
+        --accent-strong: #104b7a;
+        --danger: #b42318;
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+
+        --surface: #1c2229;
+        --surface-muted: #29323c;
+        --text: #edf1f5;
+        --text-muted: #b0bac5;
+        --line: #52606d;
+        --accent: #75baff;
+        --accent-strong: #a0ceff;
+        --danger: #ff8a80;
+    }
+
+    body {
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    :where(h1, h2, h3) {
+        color: var(--text);
+    }
+
+    :is(h2, h3) {
+        margin-block: var(--space-4);
+    }
+}
+
+/* 2. Raamistiku stiilid */
+@layer framework {
+    .field {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-small);
+        padding: var(--space-2);
+    }
+}
+
+/* 3. Komponentide stiilid */
+@layer components {
+    .cards>li :is(h2, h3) {
+        color: var(--accent);
+    }
+
+    .error:not(:empty) {
+        color: var(--danger);
+    }
+}
+
+/* 4. Meie stiilid */
+@layer ours {
+
+    /* Sama spetsiifilisus kui framework-kihi .field reeglil.
+     Ours-kiht võidab, sest see on kihtide järjekorras hilisem. */
+    .field {
+        border-color: var(--accent);
+        border-radius: var(--radius-medium);
+        background: var(--surface-muted);
+    }
+
+    .page .field {
+        padding: var(--space-4);
+    }
+
+    .cards>li:not(.active) {
+        opacity: 0.75;
+    }
+}
+
+/* 5. Erandid */
+@layer exception {
+    #purchase .field {
+        border-width: 2px;
+    }
+}
