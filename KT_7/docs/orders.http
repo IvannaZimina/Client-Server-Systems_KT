@@ -1,0 +1,35 @@
+
+@baseUrl = http://localhost:3000/api/v1
+
+### 9.1. Edukas tellimus — 201 Created
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "event": 1,
+  "qty": 2,
+  "buyer": "Test User",
+  "email": "test@example.com"
+}
+
+### 9.2. Vigane tellimus — 422 Unprocessable Content
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "event": 1,
+  "qty": 0,
+  "buyer": "Test User",
+  "email": "test@example.com"
+}
+
+### 9.3. Vabu kohti ei ole — 409 Conflict
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "event": 2,
+  "qty": 1,
+  "buyer": "Test User",
+  "email": "test@example.com"
+}
