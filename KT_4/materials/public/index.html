@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C04 katsetusala — piletikassa HTTP</title>
+<style>
+  /* Taust, tekstivärv ja teema on kirjas, mitte brauseri otsustada. Leht,
+     mis color-scheme'i ei deklareeri, saab valge lehe ka tumedas režiimis
+     (mõõdetud) — need read ei paranda viga, vaid välistavad, et brauser
+     lehe ise tumedaks pöörab, kus pre ja code jääksid heledaks. */
+  :root { color-scheme: light; }
+  body { font: 15px/1.55 system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem;
+         background: #fff; color: #222; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.05rem; margin-top: 2rem; }
+  button { font: inherit; padding: .35rem .7rem; margin: .15rem .15rem .15rem 0; cursor: pointer; }
+  pre { background: #f4f4f6; padding: .7rem; overflow-x: auto; border-left: 3px solid #156082; }
+  code { background: #f4f4f6; padding: 0 .25rem; }
+  table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: .25rem .5rem; }
+</style>
+</head>
+<body>
+<h1>C04 katsetusala — piletikassa HTTP</h1>
+<p>Ette antud. Hoia <strong>DevTools &gt; Network</strong> lahti — päris vastus
+on seal, mitte siin lehel.</p>
+
+<h2>1. Päringu peegel</h2>
+<button data-p="/api/mirror">GET peegel</button>
+<button data-p="/api/mirror?event=3&qty=2">GET päringustringiga</button>
+<button data-p="/api/mirror" data-m="POST" data-t="json">POST JSON</button>
+<button data-p="/api/mirror" data-m="POST" data-t="form">POST urlencoded</button>
+
+<h2>2. Olekukoodid</h2>
+<span id="codes"></span>
+
+<h2>3. Küpsised</h2>
+<button data-p="/api/cookie?set=1">Sea viis küpsist</button>
+<button data-p="/api/cookie">Mida server näeb</button>
+<button id="jsCookie">Mida <code>document.cookie</code> näeb</button>
+
+<h2>4. Päritolu ja CORS</h2>
+<p>See leht on pordil <strong>3004</strong>. Nupud küsivad porti
+<strong>3005</strong> — <em>sama sait, teine päritolu</em>.</p>
+<button data-p="/api/cors" data-x="1">3005 ilma CORS-ita</button>
+<button data-p="/api/cors?allowed=1" data-x="1">3005 CORS-iga</button>
+<button data-p="/api/cors?allowed=1" data-x="1" data-m="PUT" data-t="json">3005 PUT (eelkontroll)</button>
+<button data-p="/api/cookie" data-x="1" data-c="1">3005 koos küpsistega</button>
+
+<h2>5. Vahemälu ja tingimuslikud päringud</h2>
+<button data-p="/api/cache?kind=short">max-age=10</button>
+<button data-p="/api/cache?kind=revalidate">no-cache</button>
+<button data-p="/api/cache?kind=nostore">no-store</button>
+<button id="etag">GET sündmused, siis sama ETagiga</button>
+
+<h2>6. Sisu läbirääkimine ja Range</h2>
+<button data-p="/api/report" data-a="application/json">Accept: json</button>
+<button data-p="/api/report" data-a="text/csv">Accept: csv</button>
+<button data-p="/api/report" data-a="text/html">Accept: html (406)</button>
+<button data-p="/api/log" data-r="bytes=0-49">Range: 0-49</button>
+<button data-p="/api/log" data-r="bytes=-60">Range: viimased 60</button>
+
+<h2>Väljund</h2>
+<pre id="output">(vajuta nuppu)</pre>
+
+<script type="module">
+const output = document.querySelector('#output');
+const ELSEWHERE = 'http://localhost:3005';
+
+function show(lines) { output.textContent = lines.join('\n'); }
+
+async function send(button) {
+  const { p, m = 'GET', t, a, r, x, c } = button.dataset;
+  const url = (x ? ELSEWHERE : '') + p;
+  const options = { method: m, headers: {} };
+  if (a) options.headers.Accept = a;
+  if (r) options.headers.Range = r;
+  if (c) options.credentials = 'include';
+  if (t === 'json') {
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify({ event: 3, qty: 2, buyer: 'Mari' });
+  }
+  if (t === 'form') {
+    options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    options.body = new URLSearchParams({ event: 3, qty: 2, buyer: 'Mari' }).toString();
+  }
+  const start = performance.now();
+  try {
+    const v = await fetch(url, options);
+    const elapsed = Math.round(performance.now() - start);
+    const text = await v.text();
+    show([`${m} ${url}`, `-> ${v.status} ${v.statusText}  (${elapsed} ms)`,
+           ...[...v.headers].map(([k, w]) => `   ${k}: ${w}`), '', text.slice(0, 1400)]);
+  } catch (err) {
+    // ★ BRAUSER EI ÜTLE, MIS VIGA. fetch lubadus lükatakse tagasi ilma
+    //   staatuseta — sest vastus ei tohi JavaScriptini jõuda. Päris põhjus
+    //   on ainult Console-paanil.
+    show([`${m} ${url}`, '', 'FETCH KUKKUS: ' + err.message,
+           '', 'Vaata Console-paanilt CORS-i teadet.',
+           'Network-paanil on päring OLEMAS ja server VASTAS —',
+           'brauser lihtsalt ei anna vastust sellele lehele.']);
+  }
+}
+
+document.body.addEventListener('click', (e) => {
+  const n = e.target.closest('button[data-p]');
+  if (n) send(n);
+});
+
+document.querySelector('#jsCookie').addEventListener('click', () => {
+  show(['document.cookie:', '   ' + (document.cookie || '(tühi)'), '',
+         'HttpOnly-küpsist SIIN EI OLE — ja just see ongi tema mõte.']);
+});
+
+document.querySelector('#etag').addEventListener('click', async () => {
+  const a = await fetch('/api/events');
+  const tag = a.headers.get('ETag');
+  const b = await fetch('/api/events', { headers: { 'If-None-Match': tag } });
+  show([`1. GET  -> ${a.status}, ETag ${tag}`,
+         `2. GET If-None-Match -> ${b.status}`,
+         '', b.status === 304
+           ? 'Teine päring ei toonud keha. Vaata Network-paanilt Size veergu.'
+           : 'Ootasin 304. Kas silt jõudis kohale?']);
+});
+
+// Olekukoodide nupud tekitatakse, et neid oleks lihtne juurde panna.
+const codes = [200, 201, 204, 301, 302, 304, 400, 401, 403, 404, 405, 409, 412, 415, 428, 429, 500, 503];
+document.querySelector('#codes').append(...codes.map((k) => {
+  const n = document.createElement('button');
+  n.dataset.p = '/api/status/' + k;
+  n.textContent = k;
+  return n;
+}));
+</script>
+</body>
+</html>
