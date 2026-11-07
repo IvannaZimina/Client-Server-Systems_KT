@@ -1,0 +1,19 @@
+<!-- C02 Ex2 — ETTE ANTUD näidisväljad. Kopeeri nad oma vormi õigesse fieldset-i.
+     Nad kordavad sama mustrit, mille sa ülejäänud väljadega ise läbi teed:
+     label + for/id, name, aria-describedby, abitekst ja veakast. -->
+
+        <p class="field">
+          <!-- pattern on MUGAVUS, mitte turvameede: serveripool kontrollib
+               sama asja uuesti (C07 Ex4). -->
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel"
+                 pattern="\+?[0-9 ]{7,15}" autocomplete="tel"
+                 aria-describedby="phone-help phone-error">
+          <span class="help" id="phone-help">Näiteks +372 5123 4567. Valikuline.</span>
+          <span class="error" id="phone-error" role="alert"></span>
+        </p>
+
+        <p class="field">
+          <label for="note">Märkus korraldajale</label>
+          <textarea id="note" name="note" rows="3" maxlength="300"></textarea>
+        </p>

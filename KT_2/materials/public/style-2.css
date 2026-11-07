@@ -1,0 +1,67 @@
+/* C02 Ex2 — ETTE ANTUD laadileht. Vormi seisundite stiil. */
+
+/* Leht on hele — see rida hoiab ära, et brauser ta ise tumedaks pöörab. */
+:root { color-scheme: light; }
+
+body { font-family: system-ui, sans-serif; line-height: 1.5; margin: 0; color: #1a1a1a; }
+main { max-width: 34rem; margin: 0 auto; padding: 1.5rem; }
+
+fieldset {
+  border: 1px solid #c7d2d8;
+  border-radius: 4px;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem 1rem 1rem;
+}
+legend { font-weight: 700; padding: 0 0.4rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 1rem; }
+label { font-weight: 600; }
+
+input, select, textarea {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #94a6b0;
+  border-radius: 4px;
+  background: #fff;
+}
+:focus-visible { outline: 3px solid #0b6b8f; outline-offset: 2px; }
+
+/* ★ :user-invalid, MITTE :invalid.
+   `:invalid` kehtib kohe lehe avanemisel — tühi kohustuslik väli ON kehtetu
+   ja punaseks läheks terve vorm enne, kui kasutaja on midagi teinud.
+   `:user-invalid` ootab ära, kuni kasutaja on väljaga tegelenud. */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: #a4262c;
+  background: #fdf6f6;
+}
+input:user-valid,
+select:user-valid { border-color: #1f7a4d; }
+
+.help { font-size: 0.875rem; color: #46555e; }
+
+/* Veakast on ALATI DOM-is olemas, ka tühjana: role="alert" element, mis
+   alles vea hetkel luuakse, jääb sageli ette lugemata. */
+.error { font-size: 0.875rem; color: #a4262c; min-height: 1.25rem; }
+.error:empty { min-height: 0; }
+
+/* Märkeruut kõrvuti sildiga, mitte üksteise all. */
+.field:has(> input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.field:has(> input[type="checkbox"]) .error { flex-basis: 100%; }
+
+button {
+  font: inherit;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid #0b3d52;
+  background: #0b3d52;
+  color: #fff;
+  cursor: pointer;
+}
+button[type="reset"] { background: #fff; color: #0b3d52; }
