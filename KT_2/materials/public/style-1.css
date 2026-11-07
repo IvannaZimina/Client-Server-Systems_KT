@@ -1,0 +1,110 @@
+/* C02 Ex1 — ETTE ANTUD laadileht. Nii palju stiili, et fookus ja kontrast oleks
+   kontrollitavad; kaskaad ja žetoonid tulevad ülesandes 3. */
+
+/* Leht on hele — see rida hoiab ära, et brauser ta ise tumedaks pöörab. */
+:root { color-scheme: light; }
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+/* ★ HÜPPELINK. Esimene fookustatav element lehel; nähtav ainult siis, kui
+   ta fookuse saab. Klaviatuurikasutaja ei pea 30 navilinki läbi tabima. */
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  position: static;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #0b3d52;
+  color: #fff;
+}
+
+/* ★ NÄHTAV FOOKUS. `outline: none` ilma asenduseta on kõige levinum
+   ligipääsetavuse viga. :focus-visible annab ääre klaviatuurile, aga mitte
+   hiireklõpsule. */
+:focus-visible {
+  outline: 3px solid #0b6b8f;
+  outline-offset: 2px;
+}
+
+header,
+footer {
+  padding: 1rem 1.5rem;
+  background: #f2f5f7;
+}
+header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.logo {
+  font-weight: 700;
+  margin: 0;
+}
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Praegune leht on märgitud aria-current-iga; anname talle ka nähtava vahe,
+   sest ainult ekraanilugejale märkimine jätab nägija ilma. */
+nav [aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+caption {
+  text-align: left;
+  padding-block-end: 0.5rem;
+  color: #46555e; /* kontrast valgel 7,72:1 — mõõdetud, mitte arvatud */
+}
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-block-end: 1px solid #d5dde2;
+}
+thead th {
+  border-block-end-width: 2px;
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.cards > li {
+  flex: 1 1 18rem;
+}
+.cards img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.meta {
+  color: #46555e;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piletikassa</title>
+    <link rel="stylesheet" href="../materials/public/style-1.css">
+</head>
+
+<body>
+
+    <!-- 1. Hüppelink: esimene fookustatav element lehel -->
+    <a class="skip" href="#main">Liigu põhisisuni</a>
+
+    <!-- 2. Päis (header maamärk) -->
+    <header>
+        <h1 class="logo">Piletikassa</h1>
+        <!-- Navigatsioon oma aria-label-iga -->
+        <nav aria-label="Peamenüü">
+            <ul>
+                <li><a href="/" aria-current="page">Sündmused</a></li>
+                <li><a href="/saaliplaan">Saaliplaan</a></li>
+                <li><a href="/ost">Ostkorv</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 3. Peamine sisu (main maamärk, rangelt üks) -->
+    <main id="main">
+
+        <!-- Sektori 1: Esiletõstetud sündmused (section maamärk nimega) -->
+        <section aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Esiletõstetud sündmused</h2>
+
+            <!-- Nimekiri: ul > li > article -->
+            <ul class="cards">
+                <li>
+                    <article>
+                        <h3><a href="/events/131">Arendajate hommik</a></h3>
+                        <!-- Kaunistav pilt tüübi alt=""-ga -->
+                        <img src="../materials/public/images/pattern.svg" width="640" height="360" loading="lazy" decoding="async" alt="">
+                        <p>Kolm ettekannet ja hommikukohv.</p>
+                        <p class="meta"><time datetime="2026-09-13T09:30">13. sept 9.30</time> · Delta</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h3><a href="/events/132">Improteater Improvisaatorid</a></h3>
+                        <img src="../materials/public/images/pattern.svg" width="640" height="360" loading="lazy" decoding="async" alt="">
+                        <p>Õhtu täis nalja ja ootamatuid pöördeid.</p>
+                        <p class="meta"><time datetime="2026-09-15T19:00">15. sept 19.00</time> · Genialistide Klubi</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Sektori 2: Sündmuste võrdlus (tabel mahub semantikasse) -->
+        <section aria-labelledby="comparison-heading">
+            <h2 id="comparison-heading">Sündmuste võrdlus</h2>
+            <table>
+                <caption>Sündmuste piletite ja kohtade võrdlustabel</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Sündmus</th>
+                        <th scope="col">Kohtade arv</th>
+                        <th scope="col">Alates hind</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Arendajate hommik</th>
+                        <td>120</td>
+                        <td>10 €</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Improteater</th>
+                        <td>80</td>
+                        <td>15 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- 4. Jalus (footer maamärk) -->
+    <footer>
+        <p>© 2026 Piletikassa</p>
+        <nav aria-label="Jaluse menüü">
+            <ul>
+                <li><a href="/tingimused">Kasutustingimused</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
