@@ -1,0 +1,118 @@
+/* C02 — Ülesanne 4: Paigutus, ühikud ja responsiivsus */
+
+/* 1. Kastimudeli seadistamine */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Ühikud ja disainižetoonid */
+:root {
+    --layout-gap: 1.5rem;
+    --content-width: 60rem;
+    --card-min-width: 16rem;
+    --border-width: 1px;
+}
+
+body {
+    margin: 0;
+    padding: 1rem;
+}
+
+main {
+    inline-size: min(100% - 2rem, var(--content-width));
+    margin-inline: auto;
+}
+
+p {
+    max-inline-size: 65ch;
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    padding: 0.6em 1em;
+}
+
+/* 3. Loogilised omadused */
+.events-grid,
+.cards {
+    margin-inline: 0;
+    padding-inline: 0;
+}
+
+/* 4. Rea pikkuse piiramine */
+.event-description {
+    max-inline-size: 65ch;
+}
+
+/* 5. Sujuv pealkirjade suurus */
+h1 {
+    font-size: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+h2 {
+    font-size: clamp(1.35rem, 1rem + 1.2vw, 2rem);
+}
+
+/* 6. Sündmuste ruudustik ilma meediapäringuteta */
+.events-grid,
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--layout-gap);
+}
+
+/* 7. Subgrid kaartide sisu joondamiseks */
+.cards>li {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    min-inline-size: 0;
+    padding: 1rem;
+    border: var(--border-width) solid var(--line, #cbd2d9);
+    border-radius: 0.5rem;
+}
+
+/* Kaardi kolm sisuosa */
+.cards>li>header,
+.cards>li>div,
+.cards>li>footer {
+    min-inline-size: 0;
+}
+
+/* 8. Konteiner määratakse kaardiloendile */
+.cards {
+    container-name: cards;
+    container-type: inline-size;
+}
+
+/* Reegel mõjutab konteineri sees olevaid kaarte. */
+@container cards (max-width: 40rem) {
+    .cards>li {
+        padding: 0.75rem;
+    }
+
+    .cards>li h2 {
+        margin-block: 0.5rem;
+    }
+}
+
+/* 9. Pikkade tekstide ja elementide kohanemine */
+.event-description,
+.cards p {
+    overflow-wrap: anywhere;
+}
+
+.cards img {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+}

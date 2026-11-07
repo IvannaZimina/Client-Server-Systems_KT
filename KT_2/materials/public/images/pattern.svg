@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360"
+     role="presentation">
+  <!-- Puhtalt KAUNISTUS. Sellepärast on teda kutsuvas <img>-is tühi alt="":
+       kaardi nimi ja aeg on juba tekstis, pilt ei lisa infot. -->
+  <defs>
+    <pattern id="squares" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#f3efe7"/>
+      <circle cx="20" cy="20" r="6" fill="#d9cfbe"/>
+      <path d="M0 40 L40 0" stroke="#e6ddcd" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" fill="url(#squares)"/>
+  <rect x="0" y="0" width="640" height="8" fill="#7a5a40"/>
+  <rect x="0" y="352" width="640" height="8" fill="#7a5a40"/>
+</svg>
