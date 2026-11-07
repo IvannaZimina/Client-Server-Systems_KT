@@ -1,0 +1,14 @@
+{
+  "name": "c06-materials",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env server/server.js",
+    "dev": "node --watch --env-file=.env server/server.js",
+    "test": "node --test",
+    "audit": "npm audit"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
