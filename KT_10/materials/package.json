@@ -1,0 +1,9 @@
+{
+  "name": "c10-materials",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "firebase-admin": "^14.3.0",
+    "mongodb": "^7.6.0"
+  }
+}
