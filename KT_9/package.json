@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "mysql2": "^3.24.6"
+  },
+  "name": "kt_9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module"
+}
