@@ -2,5 +2,8 @@
   "dependencies": {
     "firebase-admin": "^14.5.0",
     "mongodb": "^7.8.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.35.0"
   }
 }
